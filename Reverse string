@@ -1,0 +1,18 @@
+# Reverse a String
+
+def reverse_string(s):
+    return s[::-1]
+
+def reverse_words(sentence):
+    words = sentence.split()
+    return " ".join(reversed(words))
+
+# Test
+text = "Hello World"
+print("Original:", text)
+print("Reversed string:", reverse_string(text))
+print("Reversed words:", reverse_words(text))
+
+# User input
+user_input = input("Enter a string to reverse: ")
+print("Reversed:", reverse_string(user_input))
