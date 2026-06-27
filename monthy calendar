@@ -1,0 +1,16 @@
+import calendar
+
+def main():
+    # Take input for year and month from standard input
+    year = int(input().strip())
+    month = int(input().strip())
+    
+    # Create a TextCalendar instance with Monday as the first day of the week
+    cal = calendar.TextCalendar(firstweekday=calendar.MONDAY)
+    
+    # Format the month into a string and print it
+    month_calendar = cal.formatmonth(year, month)
+    print(month_calendar.strip())
+
+if __name__ == "__main__":
+    main()
