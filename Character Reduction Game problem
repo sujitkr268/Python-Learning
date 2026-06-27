@@ -1,0 +1,26 @@
+import sys
+
+def solve():
+    # Read strings safely from standard input
+    try:
+        s1 = sys.stdin.readline().strip()
+        s2 = sys.stdin.readline().strip()
+    except Exception:
+        return
+
+    # A set containing all unique characters present across both strings
+    all_chars = set(s1) | set(s2)
+    total_remaining = 0
+    
+    # Calculate the remaining frequency for each unique character
+    for char in all_chars:
+        count1 = s1.count(char)
+        count2 = s2.count(char)
+        
+        # Eliminating common occurrences is equivalent to taking the absolute difference
+        total_remaining += abs(count1 - count2)
+        
+    print(total_remaining)
+
+if __name__ == "__main__":
+    solve()
