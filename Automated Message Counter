@@ -1,0 +1,24 @@
+import sys
+
+def main():
+    # Read all lines from standard input
+    input_data = sys.stdin.read().splitlines()
+    if not input_data:
+        return
+
+    # Parse inputs according to the specification
+    n = int(input_data[0].strip())
+    messages = [input_data[i] for i in range(1, n + 1)]
+    keyword = input_data[n + 1]
+
+    # Count how many messages contain the keyword as a substring
+    count = 0
+    for msg in messages:
+        if keyword in msg:
+            count += 1
+
+    # Print the final result integer
+    print(count)
+
+if __name__ == "__main__":
+    main()
