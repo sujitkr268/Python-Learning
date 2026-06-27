@@ -1,0 +1,54 @@
+import sys
+
+def solve():
+    # Read all input lines from standard input
+    input_data = sys.stdin.read().splitlines()
+    if not input_data:
+        return
+        
+    n = int(input_data[0].strip())
+    
+    # 1. Parse Graph Structure (Next N lines)
+    graph = {}
+    for i in range(1, n + 1):
+        parts = list(map(int, input_data[i].split()))
+        node = parts[0]
+        neighbors = parts[1:]
+        graph[node] = neighbors
+
+    # 2. Parse Initial Scores (Next N lines)
+    scores = {}
+    for i in range(n + 1, 2 * n + 1):
+        node, val = map(int, input_data[i].split())
+        scores[node] = float(val)
+        
+    # Calculate total initial score before distribution
+    total_before = sum(scores.values())
+    
+    # 3. Simulate One Step of Influence Distribution
+    new_scores = {node: 0.0 for node in scores}
+    
+    for node in graph:
+        outgoing_neighbors = graph[node]
+        current_score = scores[node]
+        
+        if len(outgoing_neighbors) == 0:
+            # Rule 2: If a node has no outgoing edges, it keeps its entire score
+            new_scores[node] += current_score
+        else:
+            # Rule 1: Splits its score equally among its outgoing neighbors
+            distributed_share = current_score / len(outgoing_neighbors)
+            for neighbor in outgoing_neighbors:
+                new_scores[neighbor] += distributed_share
+                
+    # Calculate total score after distribution
+    total_after = sum(new_scores.values())
+    
+    # 4. Check for conservation (using a small delta allowance for floating-point precision)
+    if abs(total_before - total_after) < 1e-9:
+        print("True")
+    else:
+        print("False")
+
+if __name__ == "__main__":
+    solve()
