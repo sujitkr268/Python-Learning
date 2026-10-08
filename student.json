@@ -1,0 +1,11 @@
+{
+   "name": "Sujit",
+   "age": 20,
+   "college": "Haldia Institute of Technology",
+   "branch": "CSE",
+   "skills": [
+      "Python",
+      "Java",
+      "SQL"
+   ]
+}
