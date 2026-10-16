@@ -7,14 +7,9 @@ Oppt = [
 
 
 def search_opportunities(search_term):
-    result = []
+    result = [ items for items in Oppt
+                  if search_term in items["title"].lower() or search_term in items["category"].lower()]
 
-    for items in Oppt:
-        if (
-            search_term in items["title"].lower()
-            or search_term in items["category"].lower()
-        ):
-            result.append(items)
 
     return result
 
